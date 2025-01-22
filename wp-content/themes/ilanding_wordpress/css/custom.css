@@ -2330,3 +2330,57 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+
+/*===========================================
+  404 Area Styling
+===========================================*/
+.error_page {
+  padding: 50px 0;
+  text-align: center;
+}
+.error_page h1 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  color: #262626;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+.error_page p {
+  color: #04fc2ead;
+  margin-bottom: 0;
+}
+.error_page a.homepage {
+  background: #04fc2ead;
+  color: #fff;
+  margin-bottom: 0;
+  text-decoration: none;
+  font-size: 18px;
+  text-transform: uppercase;
+  padding: 10px 25px;
+  display: inline-block;
+  margin-top: 20px;
+  transition: 0.5s;
+}
+.error_page a.homepage:hover {
+  background: #262626;
+}
+.error_search {
+  margin-bottom: 15px;
+}
+.error_search input[type="text"] {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+.error_search input[type="submit"] {
+  background: #04fc2ead;
+  border: 1px solid #04fc2ead;
+  padding: 10px;
+  margin: 0;
+  color: #fff;
+  transition: 0.5s;
+}
+.error_search input[type="submit"]:hover {
+  background: #262626;
+  border: 1px solid #262626;
+}

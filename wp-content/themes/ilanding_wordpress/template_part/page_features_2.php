@@ -40,7 +40,7 @@
 
           <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
             <div class="phone-mockup text-center">
-              <img src="img/phone-app-screen.webp" alt="Phone Mockup" class="img-fluid">
+              <img src="<?php echo get_template_directory_uri(); ?>/img/phone-app-screen.webp" alt="Phone Mockup" class="img-fluid">
             </div>
           </div><!-- End Phone Mockup -->
 

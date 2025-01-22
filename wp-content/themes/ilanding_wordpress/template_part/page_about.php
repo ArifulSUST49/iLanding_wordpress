@@ -1,4 +1,6 @@
-<div class="col-xl-5" data-aos="fade-up" data-aos-delay="200">
+         
+          <div class="row gy-4 align-items-center justify-content-between">
+         <div class="col-xl-5" data-aos="fade-up" data-aos-delay="200">
             <span class="about-meta">MORE ABOUT US</span>
             <h2 class="about-title">Voluptas enim suscipit temporibus</h2>
             <p class="about-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
@@ -24,7 +26,7 @@
               <div class="row gy-4">
                 <div class="col-lg-5">
                   <div class="profile d-flex align-items-center gap-3">
-                    <img src="img/avatar-1.webp" alt="CEO Profile" class="profile-image">
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/avatar-1.webp" alt="CEO Profile" class="profile-image">
                     <div>
                       <h4 class="profile-name">Mario Smith</h4>
                       <p class="profile-position">CEO &amp; Founder</p>
@@ -47,12 +49,13 @@
           <div class="col-xl-6" data-aos="fade-up" data-aos-delay="300">
             <div class="image-wrapper">
               <div class="images position-relative" data-aos="zoom-out" data-aos-delay="400">
-                <img src="img/about-5.webp" alt="Business Meeting" class="img-fluid main-image rounded-4">
-                <img src="img/about-2.webp" alt="Team Discussion" class="img-fluid small-image rounded-4">
+                <img src="<?php echo get_template_directory_uri(); ?>/img/about-5.webp" alt="Business Meeting" class="img-fluid main-image rounded-4">
+                <img src="<?php echo get_template_directory_uri(); ?>/img/about-2.webp" alt="Team Discussion" class="img-fluid small-image rounded-4">
               </div>
               <div class="experience-badge floating">
                 <h3>15+ <span>Years</span></h3>
                 <p>Of experience in business service</p>
               </div>
             </div>
+          </div>
           </div>

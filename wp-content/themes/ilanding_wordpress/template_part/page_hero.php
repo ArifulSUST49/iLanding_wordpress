@@ -29,15 +29,15 @@
 
           <div class="col-lg-6">
             <div class="hero-image" data-aos="zoom-out" data-aos-delay="300">
-              <img src="img/illustration-1.webp" alt="Hero Image" class="img-fluid">
+              <img src="<?php echo get_template_directory_uri(); ?>/img/illustration-1.webp" alt="Hero Image" class="img-fluid">
 
               <div class="customers-badge">
                 <div class="customer-avatars">
-                  <img src="img/avatar-1.webp" alt="Customer 1" class="avatar">
-                  <img src="img/avatar-2.webp" alt="Customer 2" class="avatar">
-                  <img src="img/avatar-3.webp" alt="Customer 3" class="avatar">
-                  <img src="img/avatar-4.webp" alt="Customer 4" class="avatar">
-                  <img src="img/avatar-5.webp" alt="Customer 5" class="avatar">
+                  <img src="<?php echo get_template_directory_uri(); ?>/img/avatar-1.webp" alt="Customer 1" class="avatar">
+                  <img src="<?php echo get_template_directory_uri(); ?>/img/avatar-2.webp" alt="Customer 2" class="avatar">
+                  <img src="<?php echo get_template_directory_uri(); ?>/img/avatar-3.webp" alt="Customer 3" class="avatar">
+                  <img src="<?php echo get_template_directory_uri(); ?>/img/avatar-4.webp" alt="Customer 4" class="avatar">
+                  <img src="<?php echo get_template_directory_uri(); ?>/img/avatar-5.webp" alt="Customer 5" class="avatar">
                   <span class="avatar more">12+</span>
                 </div>
                 <p class="mb-0 mt-2">12,000+ lorem ipsum dolor sit amet consectetur adipiscing elit</p>
@@ -47,48 +47,28 @@
         </div>
 
         <div class="row stats-row gy-4 mt-5" data-aos="fade-up" data-aos-delay="500">
+        <?php 
+        query_posts('post_type=hero&post_status=publish&order=ASC&paged='. get_query_var('post')); 
+
+        if(have_posts()) :
+          while(have_posts()) : the_post(); 
+        ?>
           <div class="col-lg-3 col-md-6">
             <div class="stat-item">
               <div class="stat-icon">
                 <i class="bi bi-trophy"></i>
               </div>
               <div class="stat-content">
-                <h4>3x Won Awards</h4>
-                <p class="mb-0">Vestibulum ante ipsum</p>
+                <h4><?php the_title(); ?></h4>
+                <p class="mb-0"><?php the_content(); ?></p>
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="stat-item">
-              <div class="stat-icon">
-                <i class="bi bi-briefcase"></i>
-              </div>
-              <div class="stat-content">
-                <h4>6.5k Faucibus</h4>
-                <p class="mb-0">Nullam quis ante</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="stat-item">
-              <div class="stat-icon">
-                <i class="bi bi-graph-up"></i>
-              </div>
-              <div class="stat-content">
-                <h4>80k Mauris</h4>
-                <p class="mb-0">Etiam sit amet orci</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="stat-item">
-              <div class="stat-icon">
-                <i class="bi bi-award"></i>
-              </div>
-              <div class="stat-content">
-                <h4>6x Phasellus</h4>
-                <p class="mb-0">Vestibulum ante ipsum</p>
-              </div>
-            </div>
-          </div>
+          
+          
+         
+          <?php 
+          endwhile;
+          endif;
+        ?>
         </div>

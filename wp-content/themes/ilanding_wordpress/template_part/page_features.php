@@ -48,7 +48,7 @@
                 </ul>
               </div>
               <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="img/features-illustration-1.webp" alt="" class="img-fluid">
+                <img src="<?php echo get_template_directory_uri(); ?>/img/features-illustration-1.webp" alt="" class="img-fluid">
               </div>
             </div>
           </div><!-- End tab content item -->
@@ -69,7 +69,7 @@
                 </ul>
               </div>
               <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="img/features-illustration-2.webp" alt="" class="img-fluid">
+                <img src="<?php echo get_template_directory_uri(); ?>/img/features-illustration-2.webp" alt="" class="img-fluid">
               </div>
             </div>
           </div><!-- End tab content item -->
@@ -89,7 +89,7 @@
                 </p>
               </div>
               <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="img/features-illustration-3.webp" alt="" class="img-fluid">
+                <img src="<?php echo get_template_directory_uri(); ?>/img/features-illustration-3.webp" alt="" class="img-fluid">
               </div>
             </div>
           </div><!-- End tab content item -->

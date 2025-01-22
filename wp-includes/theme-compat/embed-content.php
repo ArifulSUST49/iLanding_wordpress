@@ -10,7 +10,7 @@
  * @since 4.5.0
  */
 ?>
-	<div <?php post_class( 'wp-embed' ); ?>>
+	<div <?php post_class( 'wp-embed'); ?>>
 		<?php
 		$thumbnail_id = 0;
 

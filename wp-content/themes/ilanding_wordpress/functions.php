@@ -4,12 +4,12 @@
 // * My Theme Function
 // */
 
-// // ALl Default theme function here
-// include_once('inc/default.php');
+// ALl Default theme function here
+include_once('inc/default.php');
 
-// // Custom_post function here
-// include_once('inc/custom_post.php');
-// // Theme CSS and jQuery File calling
+// Custom_post function here
+include_once('inc/custom_post.php');
+// Theme CSS and jQuery File calling
 include_once('inc/enqueue.php');
 
 //Theme Function
