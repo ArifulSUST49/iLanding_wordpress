@@ -1,4 +1,5 @@
 
+
 <?php 
  get_header();
 ?>
@@ -50,11 +51,16 @@
 
     </section><!-- /Features Cards Section -->
 
-    <!-- Features 2 Section -->
     <section id="features-2" class="features-2 section">
-      
-       <?php get_template_part('template_part/page_features_2'); ?>
-     
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row align-items-center">
+            <?php get_template_part('template_part/page_features_2'); ?>
+        </div>
+
+      </div>
+
     </section><!-- /Features 2 Section -->
 
     <!-- Call To Action Section -->
@@ -441,3 +447,22 @@
 
   </main>
 <?php get_footer();?>
+=======
+<?php
+/**
+ * Front to the WordPress application. This file doesn't do anything, but loads
+ * wp-blog-header.php which does and tells WordPress to load the theme.
+ *
+ * @package WordPress
+ */
+
+/**
+ * Tells WordPress to load the WordPress theme and output it.
+ *
+ * @var bool
+ */
+define( 'WP_USE_THEMES', true );
+
+/** Loads the WordPress Environment and Template */
+require __DIR__ . '/wp-blog-header.php';
+
