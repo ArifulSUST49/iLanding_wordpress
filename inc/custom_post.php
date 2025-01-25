@@ -1,0 +1,538 @@
+
+<?php
+
+function custom_slider(){
+  register_post_type ('slider',
+    array(
+      'labels' => array(
+        'name' => ('Slider'),
+        'singular_name' => ('Slider'),
+        'add_new' => ('Add New Slider'),
+        'add_new_item' => ('Add New Slider'),
+        'edit_item' => ('Edit Slider'),
+        'delete_item' =>('Delete Slider'),
+        'new_item' => ('New Slider'),
+        'view_item' => ('View Slider'),
+        'not_found' => ('Sorry, we could not find the Slider you are looking for.'),
+      ),
+      'menu_icon' => 'dashicons-format-gallery',
+      'public' => true,
+      'publicly_queryable' => true,
+      'exclude_from_search' => true,
+      'menu_position' => 5, 
+      'has_archive' => true,
+      'hierarchial' => true,
+      'show_ui' => true,
+      'capability_type' => 'post',
+      'taxonomies' => array('category'),
+      'rewrite' => array('slag' => 'slider'),
+      'supports' => array('title', 'thumbnail', 'editor', 'excerpt'),
+      )
+    );
+    add_theme_support('post-thumbnails');
+}
+
+add_action('init', 'custom_slider');
+
+// hero description section 
+function custom_hero_des(){
+  register_post_type ('hero_des',
+    array(
+      'labels' => array(
+        'name' => ('Heros_des'),
+        'singular_name' => ('Hero'),
+        'add_new' => ('Add New Hero_content'),
+        'add_new_item' => ('Add New Hero_content'),
+        'edit_item' => ('Edit Hero_content'),
+        'delete_item' =>('Delete Hero_content'),
+        'new_item' => ('New Hero_content'),
+        'view_item' => ('View Hero_content'),
+        'not_found' => ('Sorry, we could not find the Hero_content you are looking for.'),
+      ),
+      'menu_icon' => 'dashicons-networking',
+      'public' => true,
+      'publicly_queryable' => true,
+      'exclude_from_search' => true,
+      'menu_position' => 5, 
+      'has_archive' => true,
+      'hierarchial' => true,
+      'show_ui' => true,
+      'capability_type' => 'post',
+      'taxonomies' => array('category'),
+      'rewrite' => array('slag' => 'hero_des'),
+      'supports' => array('title', 'thumbnail', 'editor', 'excerpt'),
+      )
+    );
+    add_theme_support('post-thumbnails');
+}
+
+add_action('init', 'custom_hero_des');
+
+// hero section 
+function custom_hero(){
+  register_post_type ('hero',
+    array(
+      'labels' => array(
+        'name' => ('Heros'),
+        'singular_name' => ('Hero'),
+        'add_new' => ('Add New Hero_content'),
+        'add_new_item' => ('Add New Hero_content'),
+        'edit_item' => ('Edit Hero_content'),
+        'delete_item' =>('Delete Hero_content'),
+        'new_item' => ('New Hero_content'),
+        'view_item' => ('View Hero_content'),
+        'not_found' => ('Sorry, we could not find the Hero_content you are looking for.'),
+      ),
+      'menu_icon' => 'dashicons-networking',
+      'public' => true,
+      'publicly_queryable' => true,
+      'exclude_from_search' => true,
+      'menu_position' => 5, 
+      'has_archive' => true,
+      'hierarchial' => true,
+      'show_ui' => true,
+      'capability_type' => 'post',
+      'taxonomies' => array('category'),
+      'rewrite' => array('slag' => 'hero'),
+      'supports' => array('title', 'thumbnail', 'editor', 'excerpt'),
+      )
+    );
+    add_theme_support('post-thumbnails');
+}
+
+add_action('init', 'custom_hero');
+
+
+// hero icon metabox add
+function add_hero_meta_box() {
+  add_meta_box(
+      'hero_icon',
+      'Hero icon',
+      'render_hero_icon_meta_box',
+      'hero', // Change 'hero' to your post type if needed
+      'side',
+      'default'
+  );
+}
+add_action('add_meta_boxes', 'add_hero_meta_box');
+
+function render_hero_icon_meta_box($post) {
+  // Use nonce for verification
+  wp_nonce_field('save_hero_icon_meta', 'hero_icon_meta_nonce');
+  
+  // Get existing value
+  $icon = get_post_meta($post->ID, '_hero_icon', true);
+  
+  // Render input
+  echo '<p><label for="hero_icon">Icon_title</label></p>';
+  echo '<input type="text" id="hero_icon" name="hero_icon" value="' . esc_attr($icon) . '" style="width: 100%;">';
+}
+
+function save_hero_icon($post_id) {
+  // Verify nonce
+  if (!isset($_POST['hero_icon_meta_nonce']) || !wp_verify_nonce($_POST['hero_icon_meta_nonce'], 'save_hero_icon_meta')) {
+      return;
+  }
+  
+  // Save designation
+  if (isset($_POST['hero_icon'])) {
+      update_post_meta($post_id, '_hero_icon', sanitize_text_field($_POST['hero_icon']));
+  }
+}
+add_action('save_post', 'save_hero_icon');
+
+
+// features cards section
+function feature_card(){
+    register_post_type ('features_cards',
+      array(
+        'labels' => array(
+          'name' => ('Features cards'),
+          'singular_name' => ('Feature'),
+          'add_new' => ('Add New features_card'),
+          'add_new_item' => ('Add New features_card'),
+          'edit_item' => ('Edit features_card'),
+          'delete_item' =>('Delete features_card'),
+          'new_item' => ('New features_card'),
+          'view_item' => ('View features_card'),
+          'not_found' => ('Sorry, we could not find the features_cards that you are looking for.'),
+        ),
+        'menu_icon' => 'dashicons-calendar',
+        'public' => true,
+        'publicly_queryable' => true,
+        'exclude_from_search' => true,
+        'menu_position' => 5, 
+        'has_archive' => true,
+        'hierarchial' => true,
+        'show_ui' => true,
+        'capability_type' => 'post',
+        'taxonomies' => array('category'),
+        'rewrite' => array('slag' => 'features_cards'),
+        'supports' => array('title', 'thumbnail', 'editor', 'excerpt'),
+        )
+      );
+      add_theme_support('post-thumbnails');
+  }
+  
+  add_action('init', 'feature_card');
+
+
+  function feature_box_meta_boxes() {
+    add_meta_box(
+        'feature_box_details',           // Meta box ID
+        'Feature Box Details',           // Meta box title
+        'render_feature_box_meta_box',   // Callback function to render the box
+        'features_cards',                   // Post type
+        'normal',                        // Context (normal, side, or advanced)
+        'high'                           // Priority
+    );
+}
+add_action('add_meta_boxes', 'feature_box_meta_boxes');
+
+
+// Render Meta Box feature cards
+function render_feature_box_meta_box($post) {
+    // Retrieve current values for the fields (if they exist)
+    $icon_class = get_post_meta($post->ID, '_feature_icon_class', true);
+    $background_color = get_post_meta($post->ID, '_feature_background_color', true);
+    // $animation_delay = get_post_meta($post->ID, '_feature_animation_delay', true);
+
+    // Security nonce for saving
+    wp_nonce_field('save_feature_box_meta', 'feature_box_meta_nonce');
+
+    ?>
+    <p>
+        <label for="feature_icon_class">Icon Class (e.g., "bi bi-award"):</label><br>
+        <input type="text" id="feature_icon_class" name="feature_icon_class" value="<?php echo esc_attr($icon_class); ?>" style="width: 100%;">
+    </p>
+    <p>
+        <label for="feature_background_color">Background Color (e.g., "orange"):</label><br>
+        <input type="text" id="feature_background_color" name="feature_background_color" value="<?php echo esc_attr($background_color); ?>" style="width: 100%;">
+    </p>
+    <!-- <p>
+        <label for="feature_animation_delay">Animation Delay (in ms, e.g., "100"):</label><br>
+        <input type="number" id="feature_animation_delay" name="feature_animation_delay" value="<?php //echo esc_attr($animation_delay); ?>" style="width: 100%;">
+    </p> -->
+    <?php
+}
+
+// Save Meta Box
+function save_feature_box_meta($post_id) {
+    // Check for nonce security
+    if (!isset($_POST['feature_box_meta_nonce']) || !wp_verify_nonce($_POST['feature_box_meta_nonce'], 'save_feature_box_meta')) {
+        return;
+    }
+
+    // Prevent auto-save from overwriting
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    // Ensure user has permission to edit
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    // Sanitize and save the icon class
+    if (isset($_POST['feature_icon_class'])) {
+        update_post_meta($post_id, '_feature_icon_class', sanitize_text_field($_POST['feature_icon_class']));
+    }
+
+    // Sanitize and save the background color
+    if (isset($_POST['feature_background_color'])) {
+        update_post_meta($post_id, '_feature_background_color', sanitize_text_field($_POST['feature_background_color']));
+    }
+
+    // Sanitize and save the animation delay
+    // if (isset($_POST['feature_animation_delay'])) {
+    //     update_post_meta($post_id, '_feature_animation_delay', intval($_POST['feature_animation_delay']));
+    // }
+}
+add_action('save_post', 'save_feature_box_meta');
+
+
+
+
+
+
+// feature cards2 section  with icon meta box
+
+// features cards section
+function feature_card2(){
+  register_post_type ('features_cards2',
+    array(
+      'labels' => array(
+        'name' => ('Features cards-2'),
+        'singular_name' => ('Feature'),
+        'add_new' => ('Add New features_card'),
+        'add_new_item' => ('Add New features_card'),
+        'edit_item' => ('Edit features_card'),
+        'delete_item' =>('Delete features_card'),
+        'new_item' => ('New features_card'),
+        'view_item' => ('View features_card'),
+        'not_found' => ('Sorry, we could not find the features_cards that you are looking for.'),
+      ),
+      'menu_icon' => 'dashicons-calendar',
+      'public' => true,
+      'publicly_queryable' => true,
+      'exclude_from_search' => true,
+      'menu_position' => 5, 
+      'has_archive' => true,
+      'hierarchial' => true,
+      'show_ui' => true,
+      'capability_type' => 'post',
+      'taxonomies' => array('category'),
+      'rewrite' => array('slag' => 'features_cards2'),
+      'supports' => array('title', 'thumbnail', 'editor', 'excerpt'),
+      )
+    );
+    add_theme_support('post-thumbnails');
+}
+
+add_action('init', 'feature_card2');
+
+
+function feature2_box_meta_boxes() {
+  add_meta_box(
+      'feature2_box_details',           // Meta box ID
+      'Feature2 Box Details',           // Meta box title
+      'render_feature2_box_meta_box',   // Callback function to render the box
+      'features_cards2',                   // Post type
+      'normal',                        // Context (normal, side, or advanced)
+      'high'                           // Priority
+  );
+}
+add_action('add_meta_boxes', 'feature2_box_meta_boxes');
+
+
+// Render Meta Box feature cards
+function render_feature2_box_meta_box($post) {
+  // Retrieve current values for the fields (if they exist)
+  $icon_class = get_post_meta($post->ID, '_feature_icon_class', true);
+  
+  // $animation_delay = get_post_meta($post->ID, '_feature_animation_delay', true);
+
+  // Security nonce for saving
+  wp_nonce_field('save_feature2_box_meta', 'feature2_box_meta_nonce');
+
+  ?>
+  <p>
+      <label for="feature_icon_class">Icon Class (e.g., "bi bi-award"):</label><br>
+      <input type="text" id="feature_icon_class" name="feature_icon_class" value="<?php echo esc_attr($icon_class); ?>" style="width: 100%;">
+  </p>
+ 
+  <!-- <p>
+      <label for="feature_animation_delay">Animation Delay (in ms, e.g., "100"):</label><br>
+      <input type="number" id="feature_animation_delay" name="feature_animation_delay" value="<?php //echo esc_attr($animation_delay); ?>" style="width: 100%;">
+  </p> -->
+  <?php
+}
+
+// Save Meta Box
+function save_feature2_box_meta($post_id) {
+  // Check for nonce security
+  if (!isset($_POST['feature2_box_meta_nonce']) || !wp_verify_nonce($_POST['feature2_box_meta_nonce'], 'save_feature2_box_meta')) {
+      return;
+  }
+
+  // Prevent auto-save from overwriting
+  if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+      return;
+  }
+
+  // Ensure user has permission to edit
+  if (!current_user_can('edit_post', $post_id)) {
+      return;
+  }
+
+  // Sanitize and save the icon class
+  if (isset($_POST['feature_icon_class'])) {
+      update_post_meta($post_id, '_feature_icon_class', sanitize_text_field($_POST['feature_icon_class']));
+  }
+
+ 
+
+  // Sanitize and save the animation delay
+  // if (isset($_POST['feature_animation_delay'])) {
+  //     update_post_meta($post_id, '_feature_animation_delay', intval($_POST['feature_animation_delay']));
+  // }
+}
+add_action('save_post', 'save_feature2_box_meta');
+
+//end of feature cards-2 section with meta box
+
+
+
+
+  function custom_service(){
+    register_post_type ('service',
+      array(
+        'labels' => array(
+          'name' => ('Services'),
+          'singular_name' => ('Service'),
+          'add_new' => ('Add New Service'),
+          'add_new_item' => ('Add New Service'),
+          'edit_item' => ('Edit Service'),
+          'delete_item' =>('Delete Service'),
+          'new_item' => ('New Service'),
+          'view_item' => ('View Service'),
+          'not_found' => ('Sorry, we could not find the service you are looking for.'),
+        ),
+        'menu_icon' => 'dashicons-networking',
+        'public' => true,
+        'publicly_queryable' => true,
+        'exclude_from_search' => true,
+        'menu_position' => 5, 
+        'has_archive' => true,
+        'hierarchial' => true,
+        'show_ui' => true,
+        'capability_type' => 'post',
+        'taxonomies' => array('category'),
+        'rewrite' => array('slag' => 'service'),
+        'supports' => array('title', 'thumbnail', 'editor', 'excerpt'),
+        )
+      );
+      add_theme_support('post-thumbnails');
+  }
+  
+  add_action('init', 'custom_service');
+
+
+  function custom_testimonial(){
+    register_post_type ('testimonial',
+      array(
+        'labels' => array(
+          'name' => ('Testimonial'),
+          'singular_name' => ('Testimonial'),
+          'add_new' => ('Add New Testimonial'),
+          'add_new_item' => ('Add New Testimonial'),
+          'edit_item' => ('Edit Testimonial'),
+          'delete_item' =>('Delete Testimonial'),
+          'new_item' => ('New Testimonial'),
+          'view_item' => ('View Testimonial'),
+          'not_found' => ('Sorry, we could not find the Testimonial you are looking for.'),
+        ),
+        'menu_icon' => 'dashicons-networking',
+        'public' => true,
+        'publicly_queryable' => true,
+        'exclude_from_search' => true,
+        'menu_position' => 5, 
+        'has_archive' => true,
+        'hierarchial' => true,
+        'show_ui' => true,
+        'capability_type' => 'post',
+        'taxonomies' => array('category'),
+        'rewrite' => array('slag' => 'testimonial'),
+        'supports' => array('title', 'thumbnail', 'editor', 'excerpt'),
+        )
+      );
+      add_theme_support('post-thumbnails');
+  }
+
+  add_action('init', 'custom_testimonial');
+
+  function add_testimonial_meta_box() {
+    add_meta_box(
+        'testimonial_designation',
+        'Testimonial Designation',
+        'render_testimonial_designation_meta_box',
+        'testimonial', // Change 'testimonial' to your post type if needed
+        'side',
+        'default'
+    );
+}
+add_action('add_meta_boxes', 'add_testimonial_meta_box');
+
+function render_testimonial_designation_meta_box($post) {
+    // Use nonce for verification
+    wp_nonce_field('save_testimonial_designation', 'testimonial_designation_nonce');
+    
+    // Get existing value
+    $designation = get_post_meta($post->ID, '_testimonial_designation', true);
+    
+    // Render input
+    echo '<p><label for="testimonial_designation">Designation</label></p>';
+    echo '<input type="text" id="testimonial_designation" name="testimonial_designation" value="' . esc_attr($designation) . '" style="width: 100%;">';
+}
+
+function save_testimonial_designation($post_id) {
+    // Verify nonce
+    if (!isset($_POST['testimonial_designation_nonce']) || !wp_verify_nonce($_POST['testimonial_designation_nonce'], 'save_testimonial_designation')) {
+        return;
+    }
+    
+    // Save designation
+    if (isset($_POST['testimonial_designation'])) {
+        update_post_meta($post_id, '_testimonial_designation', sanitize_text_field($_POST['testimonial_designation']));
+    }
+}
+add_action('save_post', 'save_testimonial_designation');
+
+
+
+// hero des multiple meta box settings
+function add_multiple_meta_boxes_hero_des() {
+  // First Meta Box
+  add_meta_box(
+      'meta_box_one',              // Unique ID for the first meta box
+      'Hero description',              // Title of the meta box
+      'meta_box_one_callback',     // Callback function to display the field
+      'hero_des',                  // Post type (use 'post', 'page', or custom post type slug)
+      'normal',                    // Context ('normal', 'side', or 'advanced')
+      'high'                       // Priority
+  );
+
+  // Second Meta Box
+  add_meta_box(
+      'meta_box_two',              // Unique ID for the second meta box
+      'Clients des:  ',              // Title of the meta box
+      'meta_box_two_callback',     // Callback function to display the field
+      'hero_des',                  // Post type (use 'post', 'page', or custom post type slug)
+      'normal',                    // Context ('normal', 'side', or 'advanced')
+      'high'                       // Priority
+  );
+}
+add_action('add_meta_boxes', 'add_multiple_meta_boxes_hero_des');
+
+
+function meta_box_one_callback($post) {
+  // Retrieve existing value (if any)
+  $value_one = get_post_meta($post->ID, '_meta_box_one_key', true);
+
+  // Display the field
+  ?>
+  <label for="meta_box_one_field">Field One:</label>
+  <input type="text" id="meta_box_one_field" name="meta_box_one_field" value="<?php echo esc_attr($value_one); ?>" style="width:100%;">
+  <?php
+}
+
+
+function meta_box_two_callback($post) {
+  // Retrieve existing value (if any)
+  $value_two = get_post_meta($post->ID, '_meta_box_two_key', true);
+
+  // Display the field
+  ?>
+  <label for="meta_box_two_field">Field Two:</label>
+  <textarea id="meta_box_two_field" name="meta_box_two_field" rows="4" style="width:100%;"><?php echo esc_textarea($value_two); ?></textarea>
+  <?php
+}
+
+function save_meta_boxes_data($post_id) {
+  // Save data for Meta Box One
+  if (isset($_POST['meta_box_one_field'])) {
+      $value_one = sanitize_text_field($_POST['meta_box_one_field']);
+      update_post_meta($post_id, '_meta_box_one_key', $value_one);
+  }
+
+  // Save data for Meta Box Two
+  if (isset($_POST['meta_box_two_field'])) {
+      $value_two = sanitize_textarea_field($_POST['meta_box_two_field']);
+      update_post_meta($post_id, '_meta_box_two_key', $value_two);
+  }
+}
+add_action('save_post', 'save_meta_boxes_data');
+
+
+
+
