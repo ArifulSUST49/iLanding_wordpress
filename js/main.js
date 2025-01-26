@@ -28,7 +28,10 @@ jQuery(document).ready(function ($) {
       nav: false, // Add navigation arrows if needed
       dotsEach: true, // Ensure dots are clickable (like Swiper's clickable pagination)
     });
-  })// for faq section up down show content 
+  })
+  
+  
+  // for faq section up down show content 
 
 
   document.querySelectorAll('.faq-item h3, .faq-item .faq-toggle').forEach((faqItem) => {

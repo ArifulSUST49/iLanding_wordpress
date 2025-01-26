@@ -8,6 +8,9 @@
            ?>
            
           
+          
+
+           <!--  ilanding site code      -->
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <div class="service-card d-flex">
               <div class="icon flex-shrink-0">
@@ -15,11 +18,17 @@
               </div>
               <div>
                 <h3><?php the_title();?></h3>
-                <p><?php the_excerpt();?> </p>
-                <!--<a href="service-details.html" class="read-more">Read More <i class="bi bi-arrow-right"></i></a> -->
+                <p><?php the_content();?></p>
+                <a href="<?php the_permalink(); ?>" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
+
               </div>
             </div>
           </div><!-- End Service Card -->
+
+
+
+
+
           <?php
            endwhile;
            endif;

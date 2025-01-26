@@ -19,7 +19,7 @@ add_action('after_setup_theme', 'my_theme_setup');
 
 function ali_excerpt_more($more){
   global $post;
-  return '<br> <br> <a class="redmore" href="'.get_permalink( $post->ID) . '">' . 'Read More' . '</a>';
+  return '<br> <br> <a class="redmore" href="'.get_permalink( $post->ID) . '">' . 'Read More -->' . '</a>';
 }
 add_filter('excerpt_more', 'ali_excerpt_more');
 

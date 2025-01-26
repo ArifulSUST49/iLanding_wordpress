@@ -19,17 +19,19 @@
                 query_posts('post_type=faq&post_status=publish&order=ASC&paged='. get_query_var('post')); 
 
                    if(have_posts()) :
+                    $i=0;
                      while(have_posts()) : the_post(); 
             ?>
-               <div class="faq-item">
+               <div class="faq-item <?=($i==0)?'faq-active':''?>">
                 <h3><?php echo the_title();?></h3>
                 <div class="faq-content">
-                  <p><?php echo the_content();?></p>
+                   <?php echo the_content();?>
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
 
              <?php 
+             $i++;
              endwhile;
              endif;
              ?>

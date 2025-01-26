@@ -626,7 +626,39 @@ function save_service_icon($post_id) {
 }
 add_action('save_post', 'save_service_icon');
 
+// service details
+function custom_service_details(){
+  register_post_type ('service_details',
+    array(
+      'labels' => array(
+        'name' => ('Services_details'),
+        'singular_name' => ('Service_details'),
+        'add_new' => ('Add New Service_details'),
+        'add_new_item' => ('Add New Service_details'),
+        'edit_item' => ('Edit Service_details'),
+        'delete_item' =>('Delete Service_details'),
+        'new_item' => ('New Service_details'),
+        'view_item' => ('View SService_details'),
+        'not_found' => ('Sorry, we could not find the Service_details you are looking for.'),
+      ),
+      'menu_icon' => 'dashicons-networking',
+      'public' => true,
+      'publicly_queryable' => true,
+      'exclude_from_search' => true,
+      'menu_position' => 5, 
+      'has_archive' => true,
+      'hierarchial' => true,
+      'show_ui' => true,
+      'capability_type' => 'post',
+      'taxonomies' => array('category'),
+      'rewrite' => array('slag' => 'service_details'),
+      'supports' => array('title', 'thumbnail', 'editor', 'excerpt'),
+      )
+    );
+    add_theme_support('post-thumbnails');
+}
 
+add_action('init', 'custom_service_details');
 
 
   function custom_testimonial(){

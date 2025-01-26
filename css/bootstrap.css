@@ -268,7 +268,9 @@ figure {
 img,
 svg {
   vertical-align: middle;
+  margin-bottom: 40px;
 }
+
 
 table {
   caption-side: bottom;

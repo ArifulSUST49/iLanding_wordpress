@@ -1,9 +1,6 @@
-<?php 
- get_header();
 
-?>
   <main class="main">
-  <!-- #region -->
+
     <!-- Page Title -->
     <div class="page-title light-background">
       <div class="container">
@@ -55,18 +52,10 @@
           </div>
 
           <div class="col-lg-8 ps-lg-5" data-aos="fade-up" data-aos-delay="200">
-          <?php 
-  
-  query_posts('post_type=service_details&post_status=publish&order=ASC&paged='. get_query_var('post')); 
-
-  if(have_posts()) :
-    while(have_posts()) : the_post(); 
-  ?>
-
-            <?php echo the_post_thumbnail('service_details'); ?>
-            <h3><?php the_title(); ?></h3>
+            <img src="assets/img/services.jpg" alt="" class="img-fluid services-img">
+            <h3>Temporibus et in vero dicta aut eius lidero plastis trand lined voluptas dolorem ut voluptas</h3>
             <p>
-              <?php the_content();?>
+              Blanditiis voluptate odit ex error ea sed officiis deserunt. Cupiditate non consequatur et doloremque consequuntur. Accusantium labore reprehenderit error temporibus saepe perferendis fuga doloribus vero. Qui omnis quo sit. Dolorem architecto eum et quos deleniti officia qui.
             </p>
             <ul>
               <li><i class="bi bi-check-circle"></i> <span>Aut eum totam accusantium voluptatem.</span></li>
@@ -80,10 +69,7 @@
               Sunt rem odit accusantium omnis perspiciatis officia. Laboriosam aut consequuntur recusandae mollitia doloremque est architecto cupiditate ullam. Quia est ut occaecati fuga. Distinctio ex repellendus eveniet velit sint quia sapiente cumque. Et ipsa perferendis ut nihil. Laboriosam vel voluptates tenetur nostrum. Eaque iusto cupiditate et totam et quia dolorum in. Sunt molestiae ipsum at consequatur vero. Architecto ut pariatur autem ad non cumque nesciunt qui maxime. Sunt eum quia impedit dolore alias explicabo ea.
             </p>
           </div>
-          <?php
-           endwhile;
-           endif;
-          ?>
+
         </div>
 
       </div>
@@ -93,12 +79,22 @@
   </main>
 
 
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
 
 </body>
 
 </html>
 
-<?php 
- get_footer();
 
-?>

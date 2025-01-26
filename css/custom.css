@@ -1952,7 +1952,10 @@ section,
 .faq .faq-container .faq-item h3:hover {
   color: var(--accent-color);
 }
-
+img, svg {
+  vertical-align: middle;
+  margin-bottom: 40px;
+}
 .faq .faq-container .faq-item .faq-content {
   display: grid;
   grid-template-rows: 0fr;
@@ -1962,8 +1965,9 @@ section,
 }
 
 .faq .faq-container .faq-item .faq-content p {
-  margin-bottom: 0;
+  margin: 0;
   overflow: hidden;
+  /* padding: 0; */
 }
 
 .faq .faq-container .faq-item .faq-toggle {

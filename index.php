@@ -308,7 +308,7 @@
       <div class="container">
        
       <?php get_template_part('template_part/page_faq'); ?>
-      
+
       </div>
     </section><!-- /Faq Section -->
 
