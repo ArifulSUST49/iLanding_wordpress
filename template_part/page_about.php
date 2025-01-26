@@ -1,23 +1,29 @@
-         
-          <div class="row gy-4 align-items-center justify-content-between">
+         <div class="row gy-4 align-items-center justify-content-between">
+         <?php 
+  
+  query_posts('post_type=about&post_status=publish&order=ASC&paged='. get_query_var('post')); 
+
+  if(have_posts()) :
+    while(have_posts()) : the_post(); 
+  ?>
          <div class="col-xl-5" data-aos="fade-up" data-aos-delay="200">
             <span class="about-meta">MORE ABOUT US</span>
-            <h2 class="about-title">Voluptas enim suscipit temporibus</h2>
-            <p class="about-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            <h2 class="about-title"><?php the_title();?></h2>
+            <p class="about-description"><?php the_content();?></p>
 
             <div class="row feature-list-wrapper">
               <div class="col-md-6">
                 <ul class="feature-list">
-                  <li><i class="bi bi-check-circle-fill"></i> Lorem ipsum dolor sit amet</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Consectetur adipiscing elit</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Sed do eiusmod tempor</li>
+                  <li><i class="bi bi-check-circle-fill"></i><?php echo esc_attr(get_post_meta(get_the_ID(), '_post1', true)); ?> </li>
+                  <li><i class="bi bi-check-circle-fill"></i><?php echo esc_attr(get_post_meta(get_the_ID(), '_post2', true)); ?></li>
+                  <li><i class="bi bi-check-circle-fill"></i> <?php echo esc_attr(get_post_meta(get_the_ID(), '_post3', true)); ?></li>
                 </ul>
               </div>
               <div class="col-md-6">
                 <ul class="feature-list">
-                  <li><i class="bi bi-check-circle-fill"></i> Incididunt ut labore et</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Dolore magna aliqua</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Ut enim ad minim veniam</li>
+                  <li><i class="bi bi-check-circle-fill"></i> <?php echo esc_attr(get_post_meta(get_the_ID(), '_post4', true)); ?></li>
+                  <li><i class="bi bi-check-circle-fill"></i> <?php echo esc_attr(get_post_meta(get_the_ID(), '_post5', true)); ?></li>
+                  <li><i class="bi bi-check-circle-fill"></i> <?php echo esc_attr(get_post_meta(get_the_ID(), '_post6', true)); ?></li>
                 </ul>
               </div>
             </div>
@@ -26,10 +32,10 @@
               <div class="row gy-4">
                 <div class="col-lg-5">
                   <div class="profile d-flex align-items-center gap-3">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/avatar-1.webp" alt="CEO Profile" class="profile-image">
+                  <?php the_post_thumbnail( '', array( 'class' => 'profile-image' ) ); ?>
                     <div>
-                      <h4 class="profile-name">Mario Smith</h4>
-                      <p class="profile-position">CEO &amp; Founder</p>
+                      <h4 class="profile-name"><?php echo esc_attr(get_post_meta(get_the_ID(), '_post7', true)); ?></h4>
+                      <p class="profile-position"><?php echo esc_attr(get_post_meta(get_the_ID(), '_post8', true)); ?></p>
                     </div>
                   </div>
                 </div>
@@ -38,12 +44,16 @@
                     <i class="bi bi-telephone-fill"></i>
                     <div>
                       <p class="contact-label">Call us anytime</p>
-                      <p class="contact-number">+123 456-789</p>
+                      <p class="contact-number"><?php echo esc_attr(get_post_meta(get_the_ID(), '_post9', true)); ?></p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            <?php
+            endwhile;
+            endif;
+            ?>
           </div>
 
           <div class="col-xl-6" data-aos="fade-up" data-aos-delay="300">

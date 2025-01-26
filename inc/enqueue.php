@@ -24,6 +24,7 @@ function arif_css_js_file_calling(){
      wp_enqueue_script('bootstrap',get_template_directory_uri().'/js/bootstrap.js',array(),'5.3.3','true');
      wp_enqueue_script('owl.carousel.min',get_template_directory_uri().'/js/owl.carousel.min.js',array(),'2.3.4','true');
      wp_enqueue_script( 'main',get_template_directory_uri().'/js/main.js',array(),'1.0.0','true');
+   
 }
 add_action('wp_enqueue_scripts','arif_css_js_file_calling');
 

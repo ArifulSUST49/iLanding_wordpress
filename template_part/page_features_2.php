@@ -27,7 +27,7 @@
             <i class="<?php echo esc_attr(get_post_meta(get_the_ID(), '_feature_icon_class', true)); ?>"></i>
           </div>
         </div>
-      </div><!-- End .feature-item -->
+      </div><!-- End .feature-item -->  
       
     <?php endwhile;wp_reset_postdata(); endif;  ?>
   </div>

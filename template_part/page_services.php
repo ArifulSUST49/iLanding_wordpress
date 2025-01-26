@@ -11,7 +11,7 @@
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <div class="service-card d-flex">
               <div class="icon flex-shrink-0">
-                <i class="bi bi-activity"></i>
+                <i class="<?php echo esc_attr(get_post_meta(get_the_ID(), '_service_icon', true)); ?>"></i>
               </div>
               <div>
                 <h3><?php the_title();?></h3>

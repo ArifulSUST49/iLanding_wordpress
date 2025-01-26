@@ -15,6 +15,7 @@ function custom_slider(){
         'view_item' => ('View Slider'),
         'not_found' => ('Sorry, we could not find the Slider you are looking for.'),
       ),
+      
       'menu_icon' => 'dashicons-format-gallery',
       'public' => true,
       'publicly_queryable' => true,
@@ -140,6 +141,193 @@ function save_hero_icon($post_id) {
   }
 }
 add_action('save_post', 'save_hero_icon');
+
+
+
+/// about section 
+function custom_about(){
+  register_post_type ('about',
+    array(
+      'labels' => array(
+        'name' => ('About Section'),
+        'singular_name' => ('Action'),
+        'add_new' => ('Add New About_content'),
+        'add_new_item' => ('Add New About_content'),
+        'edit_item' => ('Edit About_content'),
+        'delete_item' =>('Delete About_content'),
+        'new_item' => ('New About_content'),
+        'view_item' => ('View About_content'),
+        'not_found' => ('Sorry, we could not find the About_content you are looking for.'),
+      ),
+      'menu_icon' => 'dashicons-networking',
+      'public' => true,
+      'publicly_queryable' => true,
+      'exclude_from_search' => true,
+      'menu_position' => 5, 
+      'has_archive' => true,
+      'hierarchial' => true,
+      'show_ui' => true,
+      'capability_type' => 'post',
+      'taxonomies' => array('category'),
+      'rewrite' => array('slag' => 'about'),
+      'supports' => array('title', 'thumbnail', 'editor', 'excerpt'),
+      )
+    );
+    add_theme_support('post-thumbnails');
+}
+
+add_action('init', 'custom_about');
+
+
+
+function about_box_meta_boxes() {
+  add_meta_box(
+      'about_box_details',           // Meta box ID
+      'About Box Details',           // Meta box title
+      'render_about_box_meta_box',   // Callback function to render the box
+      'about',                   // Post type
+      'normal',                        // Context (normal, side, or advanced)
+      'high'                           // Priority
+  );
+}
+add_action('add_meta_boxes', 'about_box_meta_boxes');
+
+
+// Render Meta Box feature cards
+function render_about_box_meta_box($post) {
+  // Retrieve current values for the fields (if they exist)
+  $post1 = get_post_meta($post->ID, '_post1', true);
+  $post2 = get_post_meta($post->ID, '_post2', true);
+  $post3 = get_post_meta($post->ID, '_post3', true);
+  $post4 = get_post_meta($post->ID, '_post4', true);
+  $post5 = get_post_meta($post->ID, '_post5', true);
+  $post6 = get_post_meta($post->ID, '_post6', true);
+  $post7 = get_post_meta($post->ID, '_post7', true);
+  
+  $post8 = get_post_meta($post->ID, '_post8', true);
+  
+  $post9 = get_post_meta($post->ID, '_post9', true);
+  
+
+ 
+
+  // $background_colo = get_post_meta($post->ID, '_about_background_color', true);
+  // $icon_class = get_post_meta($post->ID, '_about_icon_class', true);
+  // $background_color = get_post_meta($post->ID, '_about_background_color', true);
+
+
+  // $animation_delay = get_post_meta($post->ID, '_feature_animation_delay', true);
+
+  // Security nonce for saving
+  wp_nonce_field('save_about_box_meta', 'about_box_meta_nonce');
+
+  ?>
+  <p>
+      <label for="post1">post1</label><br>
+      <input type="text" id="post1" name="post1" value="<?php echo esc_attr($post1); ?>" style="width: 100%;">
+  </p>
+  <p>
+      <label for="post2">post2</label><br>
+      <input type="text" id="post2" name="post2" value="<?php echo esc_attr($post2); ?>" style="width: 100%;">
+  </p>
+  <p>
+      <label for="post3">post3</label><br>
+      <input type="text" id="post3" name="post3" value="<?php echo esc_attr($post3); ?>" style="width: 100%;">
+  </p>
+  <p>
+      <label for="post4">post4</label><br>
+      <input type="text" id="post4" name="post4" value="<?php echo esc_attr($post4); ?>" style="width: 100%;">
+  </p>
+  <p>
+      <label for="post5">post5</label><br>
+      <input type="text" id="post5" name="post5" value="<?php echo esc_attr($post5); ?>" style="width: 100%;">
+  </p>
+  <p>
+      <label for="post6">post6</label><br>
+      <input type="text" id="post6" name="post6" value="<?php echo esc_attr($post6); ?>" style="width: 100%;">
+  </p>
+  <p>
+      <label for="post7">post7</label><br>
+      <input type="text" id="post7" name="post7" value="<?php echo esc_attr($post7); ?>" style="width: 100%;">
+  </p>
+ 
+  <p>
+      <label for="post8">Ceo_Designation</label><br>
+      <input type="text" id="post8" name="post8" value="<?php echo esc_attr($post8); ?>" style="width: 100%;">
+  </p>
+  <p>
+      <label for="post9">Contact No</label><br>
+      <input type="text" id="post9" name="post9" value="<?php echo esc_attr($post9); ?>" style="width: 100%;">
+  </p>
+
+  <?php
+}
+
+// Save Meta Box
+function save_about_box_meta($post_id) {
+  // Check for nonce security
+  if (!isset($_POST['about_box_meta_nonce']) || !wp_verify_nonce($_POST['about_box_meta_nonce'], 'save_about_box_meta')) {
+      return;
+  }
+
+  // Prevent auto-save from overwriting
+  if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+      return;
+  }
+
+  // Ensure user has permission to edit
+  if (!current_user_can('edit_post', $post_id)) {
+      return;
+  }
+
+  // Sanitize and save the icon class
+  if (isset($_POST['post1'])) {
+      update_post_meta($post_id, '_post1', sanitize_text_field($_POST['post1']));
+  }
+  
+  if (isset($_POST['post2'])) {
+    update_post_meta($post_id, '_post2', sanitize_text_field($_POST['post2']));
+}
+
+if (isset($_POST['post3'])) {
+  update_post_meta($post_id, '_post3', sanitize_text_field($_POST['post3']));
+}
+
+if (isset($_POST['post4'])) {
+  update_post_meta($post_id, '_post4', sanitize_text_field($_POST['post4']));
+}
+
+if (isset($_POST['post5'])) {
+  update_post_meta($post_id, '_post5', sanitize_text_field($_POST['post5']));
+}
+if (isset($_POST['post6'])) {
+  update_post_meta($post_id, '_post6', sanitize_text_field($_POST['post6']));
+}
+if (isset($_POST['post7'])) {
+  update_post_meta($post_id, '_post7', sanitize_text_field($_POST['post7']));
+}
+if (isset($_POST['post8'])) {
+  update_post_meta($post_id, '_post8', sanitize_text_field($_POST['post8']));
+}
+if (isset($_POST['post9'])) {
+  update_post_meta($post_id, '_post9', sanitize_text_field($_POST['post9']));
+}
+
+  // Sanitize and save the background color
+  // if (isset($_POST['about_background_color'])) {
+  //     update_post_meta($post_id, '_about_background_color', sanitize_text_field($_POST['about_background_color']));
+  // }
+
+  // Sanitize and save the animation delay
+  // if (isset($_POST['feature_animation_delay'])) {
+  //     update_post_meta($post_id, '_feature_animation_delay', intval($_POST['feature_animation_delay']));
+  // }
+}
+add_action('save_post', 'save_about_box_meta');
+
+/// about section end
+
+
 
 
 // features cards section
@@ -396,6 +584,49 @@ add_action('save_post', 'save_feature2_box_meta');
   }
   
   add_action('init', 'custom_service');
+
+
+
+  
+// service icon metabox add
+function add_service_meta_box() {
+  add_meta_box(
+      'service_icon',
+      'Service icon',
+      'render_service_icon_meta_box',
+      'service', // Change 'hero' to your post type if needed
+      'side',
+      'default'
+  );
+}
+add_action('add_meta_boxes', 'add_service_meta_box');
+
+function render_service_icon_meta_box($post) {
+  // Use nonce for verification
+  wp_nonce_field('save_service_icon_meta', 'service_icon_meta_nonce');
+  
+  // Get existing value
+  $icon = get_post_meta($post->ID, '_service_icon', true);
+  
+  // Render input
+  echo '<p><label for="service_icon">service_title</label></p>';
+  echo '<input type="text" id="service_icon" name="service_icon" value="' . esc_attr($icon) . '" style="width: 100%;">';
+}
+
+function save_service_icon($post_id) {
+  // Verify nonce
+  if (!isset($_POST['service_icon_meta_nonce']) || !wp_verify_nonce($_POST['service_icon_meta_nonce'], 'save_service_icon_meta')) {
+      return;
+  }
+  
+  // Save designation
+  if (isset($_POST['service_icon'])) {
+      update_post_meta($post_id, '_service_icon', sanitize_text_field($_POST['service_icon']));
+  }
+}
+add_action('save_post', 'save_service_icon');
+
+
 
 
   function custom_testimonial(){

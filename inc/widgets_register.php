@@ -47,6 +47,7 @@ function arif_widgets_register(){
         'after_title' => '</h2>',
         ));
         
+        
   }
   
   add_action('widgets_init', 'arif_widgets_register');
