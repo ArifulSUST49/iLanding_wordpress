@@ -59,6 +59,7 @@
 <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
 
+
 <!-- Main JS File -->
 <script src="assets/js/main.js"></script>
 <?php wp_footer();?>

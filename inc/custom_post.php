@@ -765,5 +765,38 @@ function save_meta_boxes_data($post_id) {
 add_action('save_post', 'save_meta_boxes_data');
 
 
+// for faq section custom post
+function faq(){
+  register_post_type ('faq',
+    array(
+      'labels' => array(
+        'name' => ('FAQ'),
+        'singular_name' => ('FAQ'),
+        'add_new' => ('Add New FAQ'),
+        'add_new_item' => ('Add New FAQ'),
+        'edit_item' => ('Edit FAQ'),
+        'delete_item' =>('Delete FAQ'),
+        'new_item' => ('New FAQ'),
+        'view_item' => ('View FAQ'),
+        'not_found' => ('Sorry, we could not find the FAQ that you are looking for.'),
+      ),
+      'menu_icon' => 'dashicons-calendar',
+      'public' => true,
+      'publicly_queryable' => true,
+      'exclude_from_search' => true,
+      'menu_position' => 5, 
+      'has_archive' => true,
+      'hierarchial' => true,
+      'show_ui' => true,
+      'capability_type' => 'post',
+      'taxonomies' => array('category'),
+      'rewrite' => array('slag' => 'faq'),
+      'supports' => array('title', 'thumbnail', 'editor', 'excerpt'),
+      )
+    );
+    add_theme_support('post-thumbnails');
+}
+
+add_action('init', 'faq');
 
 
