@@ -5,8 +5,8 @@
             while(have_posts()){
                 the_post();
         ?>
-            <div>
-                <?php echo the_post_thumbnail('slider'); ?>
+            <div class="swiper-slide">
+            <?php echo get_the_post_thumbnail( $post->ID, 'slider', array( 'class' => 'img-fluid' ) ); ?>
             </div> 
         <?php 
                 }

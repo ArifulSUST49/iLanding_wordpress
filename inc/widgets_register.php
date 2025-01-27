@@ -46,7 +46,25 @@ function arif_widgets_register(){
         'before_title' => '<h2 class="title">',
         'after_title' => '</h2>',
         ));
+        register_sidebar(array(
+          'name' => __('contact right', 'arifulislam'),
+          'id'   => 'contact-right',
+          'description' => __('Apperas in the sidebar in blog page and also other page', 'arifulislam'),
+          'before_widget' => '<div class="child_home">',
+          'after_widget' => '</div>',
+          'before_title' => '<h2 class="title">',
+          'after_title' => '</h2>',
+          ));
         
+          register_sidebar(array(
+            'name' => __('contact Left', 'arifulislam'),
+            'id'   => 'contact-left',
+            'description' => __('Apperas in the sidebar in blog page and also other page', 'arifulislam'),
+            'before_widget' => '<div class="child_home">',
+            'after_widget' => '</div>',
+            'before_title' => '<h2 class="title">',
+            'after_title' => '</h2>',
+            ));
         
   }
   

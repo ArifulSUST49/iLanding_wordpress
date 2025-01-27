@@ -1,4 +1,3 @@
-
 jQuery(document).ready(function ($) {
     jQuery('.owl-carousel').owlCarousel({
       loop: true, // Equivalent to Swiper's "loop"
@@ -28,17 +27,13 @@ jQuery(document).ready(function ($) {
       nav: false, // Add navigation arrows if needed
       dotsEach: true, // Ensure dots are clickable (like Swiper's clickable pagination)
     });
-  })
-  
-  
-  // for faq section up down show content 
+  });
 
-
+  // for FAQ iLanding js
   document.querySelectorAll('.faq-item h3, .faq-item .faq-toggle').forEach((faqItem) => {
     faqItem.addEventListener('click', () => {
       faqItem.parentNode.classList.toggle('faq-active');
     });
   });
+
   new PureCounter();
-
-

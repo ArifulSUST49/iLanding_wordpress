@@ -327,23 +327,56 @@ add_action('save_post', 'save_about_box_meta');
 
 /// about section end
 
-
-
-
-// features cards section
 function feature_card(){
-    register_post_type ('features_cards',
+  register_post_type ('features_cards',
+    array(
+      'labels' => array(
+        'name' => ('Features cards'),
+        'singular_name' => ('Feature'),
+        'add_new' => ('Add New features_card'),
+        'add_new_item' => ('Add New features_card'),
+        'edit_item' => ('Edit features_card'),
+        'delete_item' =>('Delete features_card'),
+        'new_item' => ('New features_card'),
+        'view_item' => ('View features_card'),
+        'not_found' => ('Sorry, we could not find the features_cards that you are looking for.'),
+      ),
+      'menu_icon' => 'dashicons-calendar',
+      'public' => true,
+      'publicly_queryable' => true,
+      'exclude_from_search' => true,
+      'menu_position' => 5, 
+      'has_archive' => true,
+      'hierarchial' => true,
+      'show_ui' => true,
+      'capability_type' => 'post',
+      'taxonomies' => array('category'),
+      'rewrite' => array('slag' => 'features_cards'),
+      'supports' => array('title', 'thumbnail', 'editor', 'excerpt'),
+      )
+    );
+    add_theme_support('post-thumbnails');
+}
+
+add_action('init', 'feature_card');
+
+
+
+
+// features  section
+function feature(){
+    register_post_type ('features',
       array(
         'labels' => array(
-          'name' => ('Features cards'),
-          'singular_name' => ('Feature'),
-          'add_new' => ('Add New features_card'),
-          'add_new_item' => ('Add New features_card'),
-          'edit_item' => ('Edit features_card'),
-          'delete_item' =>('Delete features_card'),
-          'new_item' => ('New features_card'),
-          'view_item' => ('View features_card'),
-          'not_found' => ('Sorry, we could not find the features_cards that you are looking for.'),
+          'name' => ('Features'),
+          'singular_name' => ('Features'),
+          'add_new' => ('Add New features'),
+          'add_new_item' => ('Add New features'),
+          'edit_item' => ('Edit features'),
+          'delete_item' =>('Delete features'),
+          'new_item' => ('New features'),
+          'view_item' => ('View features'),
+          'not_found' => ('Sorry, we could not find the features that you are looking for.'),
         ),
         'menu_icon' => 'dashicons-calendar',
         'public' => true,
@@ -355,14 +388,82 @@ function feature_card(){
         'show_ui' => true,
         'capability_type' => 'post',
         'taxonomies' => array('category'),
-        'rewrite' => array('slag' => 'features_cards'),
+        'rewrite' => array('slag' => 'features'),
         'supports' => array('title', 'thumbnail', 'editor', 'excerpt'),
         )
       );
       add_theme_support('post-thumbnails');
   }
   
-  add_action('init', 'feature_card');
+  add_action('init', 'feature');
+
+
+  function feature_meta_boxes() {
+    add_meta_box(
+        'feature_box',           // Meta box ID
+        'Feature Box ',           // Meta box title
+        'render_feature_meta_box',   // Callback function to render the box
+        'features',                   // Post type
+        'normal',                        // Context (normal, side, or advanced)
+        'high'                           // Priority
+    );
+}
+add_action('add_meta_boxes', 'feature_meta_boxes');
+
+
+// Render Meta Box feature cards
+function render_feature_meta_box($post) {
+    // Retrieve current values for the fields (if they exist)
+    $title = get_post_meta($post->ID, '_title', true);
+    
+    // $animation_delay = get_post_meta($post->ID, '_feature_animation_delay', true);
+
+    // Security nonce for saving
+    wp_nonce_field('save_feature_meta', 'feature_meta_nonce');
+
+    ?>
+    <p>
+        <label for="title">title</label><br>
+        <input type="text" id="title" name="title" value="<?php echo esc_attr($title); ?>" style="width: 100%;">
+    </p>
+    
+    <!-- <p>
+        <label for="feature_animation_delay">Animation Delay (in ms, e.g., "100"):</label><br>
+        <input type="number" id="feature_animation_delay" name="feature_animation_delay" value="<?php //echo esc_attr($animation_delay); ?>" style="width: 100%;">
+    </p> -->
+    <?php
+}
+
+// Save Meta Box
+function save_feature_meta($post_id) {
+    // Check for nonce security
+    if (!isset($_POST['feature_meta_nonce']) || !wp_verify_nonce($_POST['feature_meta_nonce'], 'save_feature_meta')) {
+        return;
+    }
+
+    // Prevent auto-save from overwriting
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    // Ensure user has permission to edit
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    // Sanitize and save the icon class
+    if (isset($_POST['title'])) {
+        update_post_meta($post_id, '_title', sanitize_text_field($_POST['title']));
+    }
+
+    // Sanitize and save the animation delay
+    // if (isset($_POST['feature_animation_delay'])) {
+    //     update_post_meta($post_id, '_feature_animation_delay', intval($_POST['feature_animation_delay']));
+    // }
+}
+add_action('save_post', 'save_feature_meta');
+
+
 
 
   function feature_box_meta_boxes() {
@@ -702,7 +803,7 @@ function add_stats_meta_box() {
       'stats',
       'stats',
       'render_stats_meta_box',
-      'stats', // Change 'testimonial' to your post type if needed
+      'stats', // Change 'stats' to your post type if needed
       'side',
       'default'
   );
@@ -782,16 +883,31 @@ add_action('save_post', 'save_stats');
 }
 add_action('add_meta_boxes', 'add_testimonial_meta_box');
 
+
+
 function render_testimonial_designation_meta_box($post) {
-    // Use nonce for verification
-    wp_nonce_field('save_testimonial_designation', 'testimonial_designation_nonce');
-    
-    // Get existing value
-    $designation = get_post_meta($post->ID, '_testimonial_designation', true);
-    
-    // Render input
-    echo '<p><label for="testimonial_designation">Designation</label></p>';
-    echo '<input type="text" id="testimonial_designation" name="testimonial_designation" value="' . esc_attr($designation) . '" style="width: 100%;">';
+  // Retrieve current values for the fields (if they exist)
+  $designation = get_post_meta($post->ID, '_testimonial_designation', true);
+  $stars = get_post_meta($post->ID, '_testimonial_stars', true);
+  // $animation_delay = get_post_meta($post->ID, '_feature_animation_delay', true);
+
+  // Security nonce for saving
+  wp_nonce_field('save_testimonial_designation','testimonial_designation_nonce');
+
+  ?>
+  <p>
+      <label for="testimonial_designation">Designation</label><br>
+      <input type="text" id="testimonial_designation" name="testimonial_designation" value="<?php echo esc_attr($designation); ?>" style="width: 100%;">
+  </p>
+  <p>
+      <label for="testimonial_stars">Testimonial_stars Num : </label><br>
+      <input type="number" id="testimonial_stars" name="testimonial_stars" value="<?php echo esc_attr($stars); ?>" style="width: 100%;">
+  </p>
+  <!-- <p>
+      <label for="feature_animation_delay">Animation Delay (in ms, e.g., "100"):</label><br>
+      <input type="number" id="feature_animation_delay" name="feature_animation_delay" value="<?php //echo esc_attr($animation_delay); ?>" style="width: 100%;">
+  </p> -->
+  <?php
 }
 
 function save_testimonial_designation($post_id) {
@@ -804,6 +920,10 @@ function save_testimonial_designation($post_id) {
     if (isset($_POST['testimonial_designation'])) {
         update_post_meta($post_id, '_testimonial_designation', sanitize_text_field($_POST['testimonial_designation']));
     }
+    // Save designation
+    if (isset($_POST['testimonial_stars'])) {
+      update_post_meta($post_id, '_testimonial_stars', sanitize_text_field($_POST['testimonial_stars']));
+  }
 }
 add_action('save_post', 'save_testimonial_designation');
 

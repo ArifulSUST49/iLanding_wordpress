@@ -6,9 +6,6 @@
            if(have_posts()) :
              while(have_posts()) : the_post(); 
            ?>
-           
-          
-          
 
            <!--  ilanding site code      -->
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">

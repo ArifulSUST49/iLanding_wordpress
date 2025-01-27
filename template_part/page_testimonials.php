@@ -1,6 +1,5 @@
 
-<?php 
-  
+<?php   
    query_posts('post_type=testimonial&post_status=publish&order=ASC&paged='. get_query_var('post')); 
 
    if(have_posts()) :
@@ -16,7 +15,16 @@
                  ?></h4>
                 
               <div class="stars">
-                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              
+              <?php
+                 $i = 0;
+                 $rating = get_post_meta(get_the_ID(), '_testimonial_stars', true);
+                 for($i = 0; $i < $rating; $i++) {
+              ?>
+                <i class="bi bi-star-fill"></i>
+                <?php 
+                 }
+                ?>
               </div>
               <p>
                 <i class="bi bi-quote quote-icon-left"></i>
