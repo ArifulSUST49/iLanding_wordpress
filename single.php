@@ -10,7 +10,7 @@
         <h1>Service Details</h1>
         <nav class="breadcrumbs">
           <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="<?php echo home_url(); ?>">Home</a></li>
             <li class="current">Service Details</li>
           </ol>
         </nav>

@@ -32,7 +32,7 @@
               <div class="row gy-4">
                 <div class="col-lg-5">
                   <div class="profile d-flex align-items-center gap-3">
-                  <?php the_post_thumbnail( '', array( 'class' => 'profile-image' ) ); ?>
+                  <?php the_post_thumbnail( '', array( 'class' => 'profile-image' ) ); ?> <!-- if you use the class then tis type    -->
                     <div>
                       <h4 class="profile-name"><?php echo esc_attr(get_post_meta(get_the_ID(), '_post7', true)); ?></h4>
                       <p class="profile-position"><?php echo esc_attr(get_post_meta(get_the_ID(), '_post8', true)); ?></p>

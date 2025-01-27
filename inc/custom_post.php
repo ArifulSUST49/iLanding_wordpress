@@ -638,7 +638,7 @@ function custom_service_details(){
         'edit_item' => ('Edit Service_details'),
         'delete_item' =>('Delete Service_details'),
         'new_item' => ('New Service_details'),
-        'view_item' => ('View SService_details'),
+        'view_item' => ('View Service_details'),
         'not_found' => ('Sorry, we could not find the Service_details you are looking for.'),
       ),
       'menu_icon' => 'dashicons-networking',
@@ -659,6 +659,82 @@ function custom_service_details(){
 }
 
 add_action('init', 'custom_service_details');
+
+
+// stats section 
+
+function custom_stats(){
+  register_post_type ('stats',
+    array(
+      'labels' => array(
+        'name' => ('stats'),
+        'singular_name' => ('stats'),
+        'add_new' => ('Add New stats'),
+        'add_new_item' => ('Add New stats'),
+        'edit_item' => ('Edit stats'),
+        'delete_item' =>('Delete stats'),
+        'new_item' => ('New stats'),
+        'view_item' => ('View stats'),
+        'not_found' => ('Sorry, we could not find the stats you are looking for.'),
+      ),
+      'menu_icon' => 'dashicons-networking',
+      'public' => true,
+      'publicly_queryable' => true,
+      'exclude_from_search' => true,
+      'menu_position' => 5, 
+      'has_archive' => true,
+      'hierarchial' => true,
+      'show_ui' => true,
+      'capability_type' => 'post',
+      'taxonomies' => array('category'),
+      'rewrite' => array('slag' => 'stats'),
+      'supports' => array('title', 'thumbnail', 'editor', 'excerpt'),
+      )
+    );
+    add_theme_support('post-thumbnails');
+}
+
+add_action('init', 'custom_stats');
+
+
+function add_stats_meta_box() {
+  add_meta_box(
+      'stats',
+      'stats',
+      'render_stats_meta_box',
+      'stats', // Change 'testimonial' to your post type if needed
+      'side',
+      'default'
+  );
+}
+add_action('add_meta_boxes', 'add_stats_meta_box');
+
+function render_stats_meta_box($post) {
+  // Use nonce for verification
+  wp_nonce_field('save_stats', 'stats_nonce');
+  
+  // Get existing value
+  $stats = get_post_meta($post->ID, '_stats', true);
+  
+  // Render input
+  echo '<p><label for="stats">data-purecounter-end</label></p>';
+  echo '<input type="number" id="stats" name="stats" value="' . esc_attr($stats) . '" style="width: 100%;">';
+}
+
+function save_stats($post_id) {
+  // Verify nonce
+  if (!isset($_POST['stats_nonce']) || !wp_verify_nonce($_POST['stats_nonce'], 'save_stats')) {
+      return;
+  }
+  
+  // Save designation
+  if (isset($_POST['stats'])) {
+      update_post_meta($post_id, '_stats', sanitize_text_field($_POST['stats']));
+  }
+}
+add_action('save_post', 'save_stats');
+
+
 
 
   function custom_testimonial(){
