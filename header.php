@@ -51,7 +51,7 @@
 
       <nav id="navmenu" class="navmenu">
       <?php wp_nav_menu( array('theme_location' => 'main_menu', 'menu_id' => 'nav')); ?>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        
       </nav>
 
       <a class="btn-getstarted" href="<?php echo home_url();?>">Get Started</a>

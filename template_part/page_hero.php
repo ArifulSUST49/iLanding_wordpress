@@ -38,15 +38,15 @@
 
           <div class="col-lg-6">
             <div class="hero-image" data-aos="zoom-out" data-aos-delay="300">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/illustration-1.webp" alt="Hero Image" class="img-fluid">
+              <img src="<?php echo get_theme_mod('hero_image'); ?>" alt="Hero Image" class="img-fluid">
 
               <div class="customers-badge">
                 <div class="customer-avatars">
-                  <img src="<?php echo get_template_directory_uri(); ?>/img/avatar-1.webp" alt="Customer 1" class="avatar">
-                  <img src="<?php echo get_template_directory_uri(); ?>/img/avatar-2.webp" alt="Customer 2" class="avatar">
-                  <img src="<?php echo get_template_directory_uri(); ?>/img/avatar-3.webp" alt="Customer 3" class="avatar">
-                  <img src="<?php echo get_template_directory_uri(); ?>/img/avatar-4.webp" alt="Customer 4" class="avatar">
-                  <img src="<?php echo get_template_directory_uri(); ?>/img/avatar-5.webp" alt="Customer 5" class="avatar">
+                  <img src="<?php echo get_theme_mod('avator1'); ?>" alt="Customer 1" class="avatar">
+                  <img src="<?php echo get_theme_mod('avator2'); ?>" alt="Customer 2" class="avatar">
+                  <img src="<?php echo get_theme_mod('avator3'); ?>" alt="Customer 3" class="avatar">
+                  <img src="<?php echo get_theme_mod('avator4'); ?>" alt="Customer 4" class="avatar">
+                  <img src="<?php echo get_theme_mod('avator5'); ?>" alt="Customer 5" class="avatar">
                   <span class="avatar more">12+</span>
                 </div>
                 <p class="mb-0 mt-2"> <?php 
