@@ -29,14 +29,17 @@
             <div class="service-box">
               <h4>Services List</h4>
               <div class="services-list">
-                <a href="#" class="active"><i class="bi bi-arrow-right-circle"></i><span>Web Design</span></a>
+                <!-- <a href="#" class="active"><i class="bi bi-arrow-right-circle"></i><span>Web Design</span></a>
                 <a href="#"><i class="bi bi-arrow-right-circle"></i><span>Web Design</span></a>
                 <a href="#"><i class="bi bi-arrow-right-circle"></i><span>Product Management</span></a>
                 <a href="#"><i class="bi bi-arrow-right-circle"></i><span>Graphic Design</span></a>
-                <a href="#"><i class="bi bi-arrow-right-circle"></i><span>Marketing</span></a>
+                <a href="#"><i class="bi bi-arrow-right-circle"></i><span>Marketing</span></a> -->
+              <?php dynamic_sidebar('service') ?> 
+              
               </div>
             </div><!-- End Services List -->
-
+          
+                 
             <div class="service-box">
               <h4>Download Catalog</h4>
               <div class="download-catalog">
@@ -68,17 +71,8 @@
             <p>
               <?php the_content();?>
             </p>
-            <ul>
-              <li><i class="bi bi-check-circle"></i> <span>Aut eum totam accusantium voluptatem.</span></li>
-              <li><i class="bi bi-check-circle"></i> <span>Assumenda et porro nisi nihil nesciunt voluptatibus.</span></li>
-              <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea</span></li>
-            </ul>
-            <p>
-              Est reprehenderit voluptatem necessitatibus asperiores neque sed ea illo. Deleniti quam sequi optio iste veniam repellat odit. Aut pariatur itaque nesciunt fuga.
-            </p>
-            <p>
-              Sunt rem odit accusantium omnis perspiciatis officia. Laboriosam aut consequuntur recusandae mollitia doloremque est architecto cupiditate ullam. Quia est ut occaecati fuga. Distinctio ex repellendus eveniet velit sint quia sapiente cumque. Et ipsa perferendis ut nihil. Laboriosam vel voluptates tenetur nostrum. Eaque iusto cupiditate et totam et quia dolorum in. Sunt molestiae ipsum at consequatur vero. Architecto ut pariatur autem ad non cumque nesciunt qui maxime. Sunt eum quia impedit dolore alias explicabo ea.
-            </p>
+            
+
           </div>
           <?php
            endwhile;
