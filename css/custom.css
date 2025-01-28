@@ -2373,7 +2373,7 @@
   }
   body .is-layout-flex {
     display: flex;
-    background-color: #f5f5f5;
+    background-color: #ffffff;
 }
 .service-details .service-box h4 {
   font-size: 20px;
@@ -2479,8 +2479,8 @@ color-mix(in srgb, var(--default-color), transparent 92%); */
 
   .service-details img, svg {
     vertical-align: middle;
-    margin-bottom: 20px;
-    padding-top: 16px;
+    margin-bottom: 0;
+    padding-top: 0;
 }
   /*--------------------------------------------------------------
   # Starter Section Section
